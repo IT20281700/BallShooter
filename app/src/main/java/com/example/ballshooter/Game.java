@@ -3,6 +3,7 @@ package com.example.ballshooter;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -96,17 +97,21 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
+        Log.d("Game.java", "surfaceCreated()");
+        if (gameLoop.getState().equals(Thread.State.TERMINATED)) {
+            gameLoop = new GameLoop(this, holder);
+        }
         gameLoop.startLoop();
     }
 
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-
+        Log.d("Game.java", "surfaceChanged()");
     }
 
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
-
+        Log.d("Game.java", "surfaceDestroyed()");
     }
 
     @Override
@@ -190,5 +195,9 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
             }
         }
 
+    }
+
+    public void pause() {
+        gameLoop.stopLoop();
     }
 }
