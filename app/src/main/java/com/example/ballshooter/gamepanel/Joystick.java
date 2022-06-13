@@ -1,8 +1,10 @@
-package com.example.ballshooter;
+package com.example.ballshooter.gamepanel;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+
+import com.example.ballshooter.Utils;
 
 public class Joystick {
 

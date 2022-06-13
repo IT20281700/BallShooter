@@ -1,4 +1,4 @@
-package com.example.ballshooter.object;
+package com.example.ballshooter.gameobject;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -6,9 +6,10 @@ import android.graphics.Canvas;
 import androidx.core.content.ContextCompat;
 
 import com.example.ballshooter.GameLoop;
-import com.example.ballshooter.Joystick;
+import com.example.ballshooter.gamepanel.Joystick;
 import com.example.ballshooter.R;
 import com.example.ballshooter.Utils;
+import com.example.ballshooter.gamepanel.HealthBar;
 
 /**
  * Player is the main character of the game, which the user can control with a touch joystick.
@@ -17,7 +18,7 @@ import com.example.ballshooter.Utils;
 public class Player extends Circle {
     public static final double SPEED_PIXELS_PER_SECOND = 400.0;
     public static final double MAX_SPEED = SPEED_PIXELS_PER_SECOND / GameLoop.MAX_UPS;
-    public static final int MAX_HEALTH_POINTS = 10;
+    public static final int MAX_HEALTH_POINTS = 2;
     private final Joystick joystick;
     private HealthBar healthBar;
     private int healthPoints;

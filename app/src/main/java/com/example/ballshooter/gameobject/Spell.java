@@ -1,4 +1,4 @@
-package com.example.ballshooter.object;
+package com.example.ballshooter.gameobject;
 
 import android.content.Context;
 

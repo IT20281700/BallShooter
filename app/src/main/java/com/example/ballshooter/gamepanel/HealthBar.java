@@ -1,4 +1,4 @@
-package com.example.ballshooter.object;
+package com.example.ballshooter.gamepanel;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import androidx.core.content.ContextCompat;
 
 import com.example.ballshooter.R;
+import com.example.ballshooter.gameobject.Player;
 
 /**
  * HealthBar displays the players health to the screen

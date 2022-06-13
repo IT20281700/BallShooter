@@ -1,4 +1,4 @@
-package com.example.ballshooter.object;
+package com.example.ballshooter.gameobject;
 
 import android.graphics.Canvas;
 
@@ -22,8 +22,8 @@ public abstract class GameObject {
     public abstract void draw(Canvas canvas);
     public abstract void update();
 
-    protected double getPositionX() { return positionX; }
-    protected double getPositionY() { return positionY; }
+    public double getPositionX() { return positionX; }
+    public double getPositionY() { return positionY; }
 
     protected static double getDistanceBetweenObjects(GameObject obj1, GameObject obj2) {
         return Math.sqrt(
