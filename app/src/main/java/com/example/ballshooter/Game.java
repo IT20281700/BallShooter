@@ -20,6 +20,7 @@ import com.example.ballshooter.gamepanel.GameDisplay;
 import com.example.ballshooter.gamepanel.GameOver;
 import com.example.ballshooter.gamepanel.Joystick;
 import com.example.ballshooter.gamepanel.Performance;
+import com.example.ballshooter.graphics.SpriteSheet;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -56,7 +57,8 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         joystick = new Joystick(275, 700, 70, 40);
 
         // Initialize game objects
-        player = new Player(context, joystick, 2 * 500, 500, 30);
+        SpriteSheet spriteSheet = new SpriteSheet(context);
+        player = new Player(context, joystick, 2 * 500, 500, 32, spriteSheet.getPlayerSprite());
 
         // Initialize game display and center it around the player
         DisplayMetrics displayMetrics = new DisplayMetrics();

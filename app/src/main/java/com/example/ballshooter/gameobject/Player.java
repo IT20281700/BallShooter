@@ -11,6 +11,7 @@ import com.example.ballshooter.gamepanel.Joystick;
 import com.example.ballshooter.R;
 import com.example.ballshooter.Utils;
 import com.example.ballshooter.gamepanel.HealthBar;
+import com.example.ballshooter.graphics.Sprite;
 
 /**
  * Player is the main character of the game, which the user can control with a touch joystick.
@@ -22,13 +23,14 @@ public class Player extends Circle {
     public static final int MAX_HEALTH_POINTS = 2;
     private final Joystick joystick;
     private HealthBar healthBar;
-    private int healthPoints;
+    private int healthPoints = MAX_HEALTH_POINTS;
+    private Sprite sprite;
 
-    public Player(Context context, Joystick joystick, double positionX, double positionY, double radius) {
+    public Player(Context context, Joystick joystick, double positionX, double positionY, double radius, Sprite sprite) {
         super(context, ContextCompat.getColor(context, R.color.player), positionX, positionY, radius);
         this.joystick = joystick;
         this.healthBar = new HealthBar(context, this);
-        this.healthPoints = MAX_HEALTH_POINTS;
+        this.sprite = sprite;
 
     }
 
@@ -51,7 +53,11 @@ public class Player extends Circle {
     }
 
     public void draw(Canvas canvas, GameDisplay gameDisplay) {
-        super.draw(canvas, gameDisplay);
+        sprite.draw(
+                canvas,
+                (int) gameDisplay.gameToDisplayCoordinatesX(getPositionX()) - sprite.getWidth()/2,
+                (int) gameDisplay.gameToDisplayCoordinatesY(getPositionY()) - sprite.getHeight()/2
+        );
         
         healthBar.draw(canvas, gameDisplay);
     }
