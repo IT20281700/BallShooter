@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import androidx.core.content.ContextCompat;
 
 import com.example.ballshooter.GameLoop;
+import com.example.ballshooter.gamepanel.GameDisplay;
 import com.example.ballshooter.gamepanel.Joystick;
 import com.example.ballshooter.R;
 import com.example.ballshooter.Utils;
@@ -49,10 +50,10 @@ public class Player extends Circle {
         }
     }
 
-    public void draw(Canvas canvas) {
-        super.draw(canvas);
+    public void draw(Canvas canvas, GameDisplay gameDisplay) {
+        super.draw(canvas, gameDisplay);
         
-        healthBar.draw(canvas);
+        healthBar.draw(canvas, gameDisplay);
     }
 
     public int getHealthPoints() {

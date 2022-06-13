@@ -4,6 +4,8 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
+import com.example.ballshooter.gamepanel.GameDisplay;
+
 /**
  * Circle is an abstract class which implements a draw method from GameObject for drawing the Object
  * as a circle
@@ -40,7 +42,12 @@ public abstract class Circle extends GameObject {
         return radius;
     }
 
-    public void draw(Canvas canvas) {
-        canvas.drawCircle((float) positionX, (float) positionY, (float) radius, paint);
+    public void draw(Canvas canvas, GameDisplay gameDisplay) {
+        canvas.drawCircle(
+                (float) gameDisplay.gameToDisplayCoordinatesX(positionX),
+                (float) gameDisplay.gameToDisplayCoordinatesY(positionY),
+                (float) radius,
+                paint
+        );
     }
 }
