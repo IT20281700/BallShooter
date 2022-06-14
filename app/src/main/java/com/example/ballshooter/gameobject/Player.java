@@ -11,7 +11,7 @@ import com.example.ballshooter.gamepanel.Joystick;
 import com.example.ballshooter.R;
 import com.example.ballshooter.Utils;
 import com.example.ballshooter.gamepanel.HealthBar;
-import com.example.ballshooter.graphics.Sprite;
+import com.example.ballshooter.graphics.Animator;
 
 /**
  * Player is the main character of the game, which the user can control with a touch joystick.
@@ -24,14 +24,15 @@ public class Player extends Circle {
     private final Joystick joystick;
     private HealthBar healthBar;
     private int healthPoints = MAX_HEALTH_POINTS;
-    private Sprite sprite;
+    private Animator animator;
+    private PlayerState playerState;
 
-    public Player(Context context, Joystick joystick, double positionX, double positionY, double radius, Sprite sprite) {
+    public Player(Context context, Joystick joystick, double positionX, double positionY, double radius, Animator animator) {
         super(context, ContextCompat.getColor(context, R.color.player), positionX, positionY, radius);
         this.joystick = joystick;
         this.healthBar = new HealthBar(context, this);
-        this.sprite = sprite;
-
+        this.animator = animator;
+        this.playerState = new PlayerState(this);
     }
 
     public void update() {
@@ -50,15 +51,12 @@ public class Player extends Circle {
             directionX = velocityX/distance;
             directionY = velocityY/distance;
         }
+
+        playerState.update();
     }
 
     public void draw(Canvas canvas, GameDisplay gameDisplay) {
-        sprite.draw(
-                canvas,
-                (int) gameDisplay.gameToDisplayCoordinatesX(getPositionX()) - sprite.getWidth()/2,
-                (int) gameDisplay.gameToDisplayCoordinatesY(getPositionY()) - sprite.getHeight()/2
-        );
-        
+        animator.draw(canvas, gameDisplay, this);
         healthBar.draw(canvas, gameDisplay);
     }
 
@@ -70,5 +68,9 @@ public class Player extends Circle {
         // Only allow positive values
         if(healthPoints >= 0)
             this.healthPoints = healthPoints;
+    }
+
+    public PlayerState getPlayerState() {
+        return playerState;
     }
 }
